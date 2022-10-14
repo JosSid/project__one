@@ -76,7 +76,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req,res,next) => {
     try {
         const _id = req.params.id;
-        await Band.remove({ _id: _id});
+        await Band.deleteOne({ _id: _id});
 
         res.json({message: 'Deleted Band'})
     } catch (err) {
