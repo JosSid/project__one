@@ -13,11 +13,13 @@ npm run dev
 ```
 
 
-## API
+## API ROUTES  /api/bands
 
-### /api/bands
+****
+### **GET METHOD**
+****
+****
 
-### API Routes
 
 ```
 GET/api/bands
@@ -37,10 +39,63 @@ Return a list of Bands. Example:
     ]
 }
 ```
-
-### API Indexes
-
+****
+## **POST METHOD**
+****
+****
+```
+POST/api/bands
+```
+Create Band. Example:
 ```json
+body: {
+  name: 'FOO Fighters',
+  origin: 'USA'
+}
+
+RETURN:
+{
+"_id": "6349354c97d2728e2d2f5feb",
+"name": "Foo Fighters",
+"origin": "USA",
+"__v": 0
+}
+
+```
+
+****
+## **PUT METHOD**
+****
+****
+
+```
+PUT/api/bands/<band ID>
+```
+Update band. Example:
+```
+{
+"results": [
+{
+"_id": "6347ec3436c75cbdfebc3d08",
+"name": "AC_DC",
+"origin": "Australia"
+},
+{
+"_id": "6347ec5736c75cbdfebc3d09",
+"name": "Los Zigarros",
+"origin": "Spain"
+}
+]
+}
+```
+
+*****
+*****
+*****
+*****
+# API Indexes
+
+```js
 [
   { v: 2, key: { _id: 1 }, name: '_id_' },
   { v: 2, key: { name: 1 }, name: 'name_1' },

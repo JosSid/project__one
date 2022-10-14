@@ -40,10 +40,24 @@ router.get('/:name', async (req, res, next) => {
 });
 
 
+//Create Band
+//TODO:Arreglar validate
+router.post('/',validate({body: bandSchema}),async (req, res, next) => {
+    try{
+        const bandData = req.body;
+        //instanciamos objeto en memoria
+        const band = new Band(bandData);
+        //lo guardamos en la base de datos
+        const bandSave = await band.save();
 
-router.post('/',validate({body: bandSchema}),(req, res, next) => {
+        res.json({result: bandSave})
+
+
+    }catch(err){
+        next(err)
+    }
     
-    res.json('hola')
+    
 });
 
 router.put('/:id', async (req, res, next) => {
@@ -54,6 +68,17 @@ router.put('/:id', async (req, res, next) => {
         const updatedBand = await Band.findOneAndUpdate({ _id: _id}, data, {new: true});//new: true nos devuelve el documento actualizado
 
         res.json({result : updatedBand})
+    } catch (err) {
+        next(err)
+    };
+});
+
+router.delete('/:id', async (req,res,next) => {
+    try {
+        const _id = req.params.id;
+        await Band.remove({ _id: _id});
+
+        res.json({message: 'Deleted Band'})
     } catch (err) {
         next(err)
     };
