@@ -16,7 +16,26 @@ const Band = require('../../models/Band')
 
 router.get('/', async (req,res,next) => {
     try{
-        const bands = await Band.find();
+
+        //filtros
+        const name = req.query.name;
+        const origin = req.query.origin;
+        const skip = req.query.skip;
+        const limit = req.query.limit;
+        const fields = req.query.fields;
+        const sort = req.query.sort;
+
+        const filtro = {}
+
+        if(name) {
+            filtro.name = name;
+        }
+
+        if(origin) {
+            filtro.origin = origin;
+        }
+
+        const bands = await Band.lista(filtro,skip,limit, fields,sort);
 
         res.json({results: bands})
     }catch(err){

@@ -40,6 +40,34 @@ Return a list of Bands. Example:
 }
 ```
 ****
+****
+
+You can use filters to get filtered searches.
+
+You can use one or several filters at the same time.
+
+ For Example:
+
+```
+GET/api/bands/?<filter>=<value>&<filter>=<value> etc.
+```
+
+```
+Filters:
+
+1. name=<name>
+
+2 .origin=<origin>
+
+3. skip=<number>
+
+4. limit=<number>
+
+5. fields=<name of field>
+
+6. sort=<field of sort>
+```
+
 ## **POST METHOD**
 ****
 ****
@@ -47,7 +75,7 @@ Return a list of Bands. Example:
 POST/api/bands
 ```
 Create Band. Example:
-```json
+```js
 body: {
   name: 'FOO Fighters',
   origin: 'USA'
