@@ -24,6 +24,8 @@ router.get('/', async (req,res,next) => {
     };
 });
 
+
+
 router.get('/:name', async (req, res, next) => {
     try {
         const name = req.params.name;
@@ -35,11 +37,26 @@ router.get('/:name', async (req, res, next) => {
     } catch (err) {
         next(err)
     }
-})
+});
+
+
 
 router.post('/',validate({body: bandSchema}),(req, res, next) => {
     
     res.json('hola')
+});
+
+router.put('/:id', async (req, res, next) => {
+    try {
+        const _id = req.params.id;
+        const data = req.body;
+
+        const updatedBand = await Band.findOneAndUpdate({ _id: _id}, data, {new: true});//new: true nos devuelve el documento actualizado
+
+        res.json({result : updatedBand})
+    } catch (err) {
+        next(err)
+    };
 });
 
 module.exports = router;

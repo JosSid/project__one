@@ -17,6 +17,11 @@ npm run dev
 
 ### /api/bands
 
+### API Routes
+
+```
+GET/api/bands
+```
 Return a list of Bands. Example:
 
 ```json
