@@ -14,6 +14,8 @@ const {validate} = new Validator()
 
 const Band = require('../../models/Band')
 
+const basicAuthMiddleware = require('../../lib/basicAuthMiddleware')
+
 router.get('/', async (req,res,next) => {
     try{
 
@@ -61,7 +63,7 @@ router.get('/:name', async (req, res, next) => {
 
 //Create Band
 //TODO:Arreglar validate
-router.post('/',validate({body: bandSchema}),async (req, res, next) => {
+router.post('/', basicAuthMiddleware,validate({body: bandSchema}),async (req, res, next) => {
     try{
         const bandData = req.body;
         //instanciamos objeto en memoria
@@ -79,7 +81,7 @@ router.post('/',validate({body: bandSchema}),async (req, res, next) => {
     
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id',basicAuthMiddleware, async (req, res, next) => {
     try {
         const _id = req.params.id;
         const data = req.body;
@@ -92,7 +94,7 @@ router.put('/:id', async (req, res, next) => {
     };
 });
 
-router.delete('/:id', async (req,res,next) => {
+router.delete('/:id',basicAuthMiddleware, async (req,res,next) => {
     try {
         const _id = req.params.id;
         await Band.deleteOne({ _id: _id});

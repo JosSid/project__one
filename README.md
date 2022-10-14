@@ -3,7 +3,15 @@
 ## k_api
 
 ### Start in production mode:
+
+The First deploy, load initial data into the databases:
+
+```sh
+npm run initDB
 ```
+
+
+```sh
 npm start
 ```
 
